@@ -419,10 +419,6 @@ Requests per minute
 
 ### 👨‍💻 **Meet the Developer**
 
-<div align="center">
-<img src="https://via.placeholder.com/150x150/2CA5E0/white?text=MAT3810" alt="Developer Avatar" style="border-radius: 50%; border: 3px solid #2CA5E0;">
-</div>
-
 <a href="https://t.me/MAT3810">
 <img src="https://img.shields.io/badge/💬%20Contact%20Ariel-Telegram-blue?style=for-the-badge&logo=telegram">
 </a>
