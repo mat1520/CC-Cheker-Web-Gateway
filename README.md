@@ -108,7 +108,7 @@ open index.html
 # or double-click index.html
 
 # 💎 Full version repository available for purchase
-# Contact @mat1520 for access to the complete system
+# Contact @MAT3810 for access to the complete system
 ```
 
 ### 🧪 **Test Cards** (Demo Mode)
@@ -275,7 +275,7 @@ open index.html
 
 ### 💬 **Contact for Pricing**
 All plans available with flexible pricing options  
-Contact [@mat1520](https://t.me/mat1520) for custom quotes  
+Contact [@MAT3810](https://t.me/MAT3810) for custom quotes  
 
 </div>
 
@@ -415,6 +415,24 @@ Requests per minute
 
 ### 📞 **Get Your Custom Quote Today**
 
+<div align="center">
+
+### 👨‍💻 **Meet the Developer**
+
+<div align="center">
+<img src="https://via.placeholder.com/150x150/2CA5E0/white?text=MAT3810" alt="Developer Avatar" style="border-radius: 50%; border: 3px solid #2CA5E0;">
+</div>
+
+<a href="https://t.me/MAT3810">
+<img src="https://img.shields.io/badge/💬%20Contact%20Ariel-Telegram-blue?style=for-the-badge&logo=telegram">
+</a>
+
+**Telegram:** [@MAT3810](https://t.me/MAT3810)  
+**Email:** [arielmelo1520@hotmail.com](mailto:arielmelo1520@hotmail.com)  
+**Response Time:** Usually within 2 hours
+
+</div>
+
 </div>
 
 <table>
@@ -426,18 +444,18 @@ Requests per minute
 </tr>
 <tr>
 <td align="center">
-<a href="https://t.me/mat1520">
+<a href="https://t.me/MAT3810">
 <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white">
 </a><br>
-<strong>@mat1520</strong><br>
+<strong>@MAT3810</strong><br>
 Response: < 2 hours<br>
 <em>💎 Purchase inquiries welcome</em>
 </td>
 <td align="center">
-<a href="mailto:contact@mat1520.dev">
+<a href="mailto:arielmelo1520@hotmail.com">
 <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white">
 </a><br>
-<strong>Via GitHub</strong><br>
+<strong>arielmelo1520@hotmail.com</strong><br>
 Response: < 24 hours
 </td>
 <td align="center">
@@ -541,7 +559,7 @@ Same day available
 
 ### 💎 **Join 1,500+ Successful Businesses**
 
-<a href="https://t.me/mat1520">
+<a href="https://t.me/MAT3810">
 <img src="https://img.shields.io/badge/💬%20Start%20Free%20Consultation-Telegram-blue?style=for-the-badge&logo=telegram">
 </a>
 <br><br>
@@ -594,6 +612,8 @@ Same day available
 <div align="center">
 
 *🔥 **Professional Credit Card Verification Solutions** | Made with ❤️ and ☕ by [@mat1520](https://github.com/mat1520)*
+
+**💬 Contact:** [@MAT3810](https://t.me/MAT3810) | **📧 Email:** arielmelo1520@hotmail.com
 
 **⚡ Powering secure payments for the next generation of digital businesses**
 
