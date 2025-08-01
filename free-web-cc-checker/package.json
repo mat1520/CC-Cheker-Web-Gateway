@@ -1,0 +1,44 @@
+{
+  "name": "free-cc-checker-demo",
+  "version": "1.0.0",
+  "description": "Free demo version of professional CC verification terminal by mat1520",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 3000",
+    "build": "echo 'Demo version - no build required'",
+    "deploy": "echo 'Deploy to your hosting platform'"
+  },
+  "keywords": [
+    "credit-card",
+    "verification",
+    "demo",
+    "cc-checker",
+    "payment",
+    "terminal",
+    "mat1520",
+    "fraud-detection"
+  ],
+  "author": "mat1520 <https://github.com/mat1520>",
+  "license": "Demo License - For demonstration purposes only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mat1520/free-cc-checker-demo.git"
+  },
+  "homepage": "https://github.com/mat1520",
+  "bugs": {
+    "url": "https://github.com/mat1520/free-cc-checker-demo/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.7.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

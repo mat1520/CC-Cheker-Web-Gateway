@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Open CC Checker in Browser",
+			"type": "shell",
+			"command": "start",
+			"args": [
+				"index.html"
+			],
+			"group": "build",
+			"isBackground": false
+		}
+	]
+}

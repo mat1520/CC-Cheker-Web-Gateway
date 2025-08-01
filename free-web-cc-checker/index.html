@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC Checker Terminal - Free Demo by mat1520</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #00ff41;
+            --secondary-cyan: #00ffff;
+            --dark-bg: #0a0a0a;
+            --terminal-bg: #0d1117;
+            --border-color: #30363d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --glow-green: 0 0 10px #00ff41;
+            --glow-cyan: 0 0 10px #00ffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 98%, var(--primary-green) 100%),
+                linear-gradient(180deg, transparent 98%, var(--secondary-cyan) 100%);
+            background-size: 50px 50px, 50px 50px;
+            animation: grid-move 20s linear infinite;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .demo-banner a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(13, 17, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            text-shadow: var(--glow-green);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: var(--secondary-cyan);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .github-link {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            color: var(--secondary-cyan);
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            background: var(--terminal-bg);
+            z-index: 50;
+            backdrop-filter: blur(10px);
+        }
+
+        .github-link:hover {
+            color: var(--primary-green);
+            text-shadow: var(--glow-green);
+            border-color: var(--primary-green);
+        }
+
+        /* Main container */
+        .container {
+            background: var(--terminal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            position: relative;
+        }
+
+        .terminal-prompt {
+            color: var(--primary-green);
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--secondary-cyan);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-green);
+            outline: none;
+            box-shadow: var(--glow-green);
+        }
+
+        .btn {
+            background: var(--primary-green);
+            color: var(--dark-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            box-shadow: var(--glow-green);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+            color: var(--secondary-cyan);
+        }
+
+        .loading-text {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .spinner {
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-green);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--dark-bg);
+        }
+
+        .status-approved {
+            background: linear-gradient(135deg, #00ff41, #00e63a);
+            color: #000000;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.8);
+            animation: pulse-green 2s ease-in-out infinite;
+            border: 2px solid #00cc33;
+        }
+
+        .status-declined {
+            background: linear-gradient(135deg, #ff4444, #e63939);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+            animation: pulse-red 2s ease-in-out infinite;
+            border: 2px solid #cc3333;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(0, 255, 65, 0.8);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(0, 255, 65, 1), 0 0 35px rgba(0, 255, 65, 0.6);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(255, 68, 68, 1), 0 0 35px rgba(255, 68, 68, 0.6);
+                transform: scale(1.02);
+            }
+        }
+
+        .format-help {
+            background: var(--terminal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .format-help::before {
+            content: '> ';
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+
+        .format-help h4 {
+            color: var(--secondary-cyan);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .format-help p {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .format-help code {
+            background: var(--dark-bg);
+            padding: 4px 8px;
+            border-radius: 3px;
+            color: var(--primary-green);
+            border: 1px solid var(--border-color);
+            font-weight: 500;
+        }
+
+        /* Pricing section */
+        .pricing-section {
+            background: var(--terminal-bg);
+            border: 2px solid var(--primary-green);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px auto;
+            text-align: center;
+            box-shadow: var(--glow-green);
+            max-width: 800px;
+        }
+
+        .pricing-section h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-shadow: var(--glow-green);
+        }
+
+        .pricing-section > p {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 20px 0;
+            color: var(--text-primary);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-list li {
+            margin: 12px 0;
+            list-style: none;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .features-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .contact-btn {
+            background: var(--secondary-cyan);
+            color: var(--dark-bg);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .contact-btn:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        .footer a {
+            color: var(--secondary-cyan);
+            text-decoration: none;
+        }
+
+        /* Demo limitations notice */
+        .demo-notice {
+            background: rgba(255, 107, 53, 0.15);
+            border: 1px solid #ff6b35;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #ff9d70;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .demo-notice strong {
+            color: #ff6b35;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .github-link {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px auto 20px;
+                display: inline-flex;
+            }
+
+            .pricing-section {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+
+            .features-list {
+                text-align: left;
+                padding: 0 10px;
+            }
+
+            .result div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-banner">
+        🚨 FREE DEMO VERSION - Limited functionality | <a href="#contact">Contact for FULL VERSION with 50+ gateways</a> 🚨
+    </div>
+
+    <a href="https://github.com/mat1520" target="_blank" class="github-link">
+        <span>👤</span> @mat1520
+    </a>
+
+    <div class="header">
+        <h1>⚡ CC CHECKER TERMINAL</h1>
+        <div class="subtitle">Free Demo - Advanced Credit Card Verification System</div>
+    </div>
+
+    <div class="container">
+        <div class="terminal-prompt">root@ccchecker:~$ ./verify_card_demo.py</div>
+
+        <div class="demo-notice">
+            <strong>🎯 DEMO MODE:</strong> This version simulates results for demonstration. Real version includes live gateways and full functionality.
+        </div>
+
+        <div class="format-help">
+            <h4>📋 INPUT FORMAT REQUIRED:</h4>
+            <p>
+                Enter card data in format: <code>number|month|year|cvv</code>
+            </p>
+            <p>
+                <strong>Example:</strong> <code>4532123456789012|12|2025|123</code>
+            </p>
+        </div>
+
+        <form id="checkForm">
+            <div class="form-group">
+                <label for="cardInput">> CARD_DATA_INPUT:</label>
+                <input 
+                    type="text" 
+                    id="cardInput" 
+                    placeholder="4532123456789012|12|2025|123"
+                    required
+                    autocomplete="off"
+                >
+            </div>
+            
+            <button type="submit" class="btn" id="checkBtn">
+                🚀 EXECUTE DEMO VERIFICATION (SIMULATED)
+            </button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p class="loading-text">SIMULATING CARD VERIFICATION...</p>
+            <p class="loading-text" style="font-size: 0.8rem; margin-top: 5px;">Demo mode - Processing simulation...</p>
+        </div>
+
+        <div class="result" id="result">
+            <!-- Demo results will be shown here -->
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="pricing-section" id="contact">
+        <h3>🚀 GET THE FULL VERSION</h3>
+        <p>
+            This demo shows only a fraction of our capabilities. The full version includes:
+        </p>
+        
+        <ul class="features-list">
+            <li>50+ Premium Gateways (Stripe, PayPal, Square, etc.)</li>
+            <li>Real-time Card Verification</li>
+            <li>Mass Checker (Bulk Processing)</li>
+            <li>Telegram Bot Integration</li>
+            <li>Advanced BIN Checker</li>
+            <li>Live Cards History & Export</li>
+            <li>Rate Limiting & Security</li>
+            <li>Custom Gateway Integration</li>
+            <li>24/7 Support & Updates</li>
+            <li>White-label Solutions Available</li>
+        </ul>
+
+        <button class="contact-btn" onclick="contactForPurchase()">
+            💰 CONTACT FOR PRICING & PURCHASE
+        </button>
+        
+        <p style="margin-top: 15px; color: var(--text-primary); font-size: 0.9rem;">
+            🔒 Secure payment methods available | 📧 Quick setup & deployment
+        </p>
+    </div>
+
+    <div class="footer">
+        <p>Developed by <a href="https://github.com/mat1520" target="_blank">@mat1520</a> | 
+        <span style="color: var(--text-secondary);">Professional CC Verification Solutions</span></p>
+    </div>
+
+    <script>
+        // Demo data for simulation
+        const demoBins = {
+            '4532': { bank: 'DEMO BANK USA', brand: 'VISA', type: 'CREDIT', country: 'United States 🇺🇸', level: 'CLASSIC' },
+            '4381': { bank: 'DEMO INTERNATIONAL', brand: 'VISA', type: 'DEBIT', country: 'Ecuador 🇪🇨', level: 'GOLD' },
+            '4271': { bank: 'DEMO FINANCIAL CORP', brand: 'VISA', type: 'CREDIT', country: 'Canada 🇨🇦', level: 'PLATINUM' },
+            '5555': { bank: 'DEMO MASTERCARD BANK', brand: 'MASTERCARD', type: 'CREDIT', country: 'Mexico 🇲🇽', level: 'WORLD' },
+            '3782': { bank: 'DEMO AMERICAN EXPRESS', brand: 'AMEX', type: 'CREDIT', country: 'United States 🇺🇸', level: 'GOLD' }
+        };
+
+        // Demo results simulation
+        function getRandomResult() {
+            const results = [
+                { status: 'Approved', message: 'Demo: Transaction Approved', gateway: 'demo_stripe' },
+                { status: 'Approved', message: 'Demo: CVV Match - Approved', gateway: 'demo_paypal' },
+                { status: 'Declined', message: 'Demo: Insufficient Funds', gateway: 'demo_square' },
+                { status: 'Declined', message: 'Demo: Invalid Card Number', gateway: 'demo_gateway' },
+                { status: 'Approved', message: 'Demo: Authentication Successful', gateway: 'demo_premium' }
+            ];
+            return results[Math.floor(Math.random() * results.length)];
+        }
+
+        function generateDemoUser() {
+            const names = ['John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson', 'David Brown'];
+            const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
+            const states = ['NY', 'CA', 'IL', 'TX', 'AZ'];
+            
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            const randomState = states[Math.floor(Math.random() * cities.length)];
+            
+            return {
+                firstname: randomName.split(' ')[0],
+                lastname: randomName.split(' ')[1],
+                email: `${randomName.split(' ')[0].toLowerCase()}.demo@example.com`,
+                city: randomCity,
+                state: randomState,
+                address: '123 Demo Street'
+            };
+        }
+
+        // Form submission
+        document.getElementById('checkForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const cardInput = document.getElementById('cardInput').value.trim();
+            const checkBtn = document.getElementById('checkBtn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            
+            if (!cardInput) {
+                alert('Please enter card data');
+                return;
+            }
+            
+            // Validate format
+            const parts = cardInput.split('|');
+            if (parts.length !== 4) {
+                alert('Invalid format. Use: number|month|year|cvv');
+                return;
+            }
+            
+            const [number, month, year, cvv] = parts;
+            
+            if (number.length < 13 || number.length > 19) {
+                alert('Invalid card number length');
+                return;
+            }
+            
+            // Show loading
+            checkBtn.disabled = true;
+            loading.style.display = 'block';
+            result.style.display = 'none';
+            
+            // Simulate processing time
+            await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 3000));
+            
+            // Generate demo result
+            const bin = number.substring(0, 4);
+            const binInfo = demoBins[bin] || {
+                bank: 'DEMO BANK UNKNOWN',
+                brand: 'UNKNOWN',
+                type: 'UNKNOWN',
+                country: 'Unknown 🌍',
+                level: 'STANDARD'
+            };
+            
+            const demoResult = getRandomResult();
+            const demoUser = generateDemoUser();
+            const processingTime = (2 + Math.random() * 3).toFixed(2);
+            
+            // Show result
+            showDemoResult({
+                card: { number: number.substring(0, 4) + '****' + number.substring(number.length - 4), month, year, cvv },
+                bin_info: binInfo,
+                result: demoResult,
+                user_data: demoUser,
+                processing_time: processingTime
+            });
+            
+            checkBtn.disabled = false;
+            loading.style.display = 'none';
+        });
+
+        function showDemoResult(data) {
+            const result = document.getElementById('result');
+            const statusClass = data.result.status === 'Approved' ? 'status-approved' : 'status-declined';
+            const statusIcon = data.result.status === 'Approved' ? '✅' : '❌';
+            
+            result.className = `result ${statusClass}`;
+            result.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <div style="font-size: 2rem; margin-right: 10px;">${statusIcon}</div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.5rem; color: ${data.result.status === 'Approved' ? '#000000' : 'white'}; font-weight: 700; text-shadow: none;">${data.result.status.toUpperCase()}</h3>
+                        <p style="margin: 5px 0 0 0; opacity: 1; font-size: 0.9rem; color: ${data.result.status === 'Approved' ? '#1a1a1a' : 'white'}; font-weight: 500;">${data.result.message}</p>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: var(--terminal-bg); padding: 15px; border-radius: 4px; border: 1px solid var(--border-color);">
+                        <div style="color: var(--secondary-cyan); font-size: 0.8rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">CARD INFO</div>
+                        <div style="font-family: 'Fira Code', monospace; margin-bottom: 8px; color: var(--text-primary); font-size: 1.1rem; font-weight: 500;">${data.card.number}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Exp: ${data.card.month}/${data.card.year} | CVV: ${data.card.cvv}</div>
+                    </div>
+                    
+                    <div style="background: var(--terminal-bg); padding: 15px; border-radius: 4px; border: 1px solid var(--border-color);">
+                        <div style="color: var(--secondary-cyan); font-size: 0.8rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">BANK INFO (DEMO)</div>
+                        <div style="font-weight: bold; margin-bottom: 5px; color: var(--text-primary);">${data.bin_info.bank}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">${data.bin_info.brand} ${data.bin_info.type}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">${data.bin_info.country}</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: var(--terminal-bg); border-radius: 4px; border: 1px solid var(--border-color);">
+                    <div style="color: var(--secondary-cyan); font-size: 0.8rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">DEMO USER DATA</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; font-size: 0.9rem; color: var(--text-primary);">
+                        <div>👤 ${data.user_data.firstname} ${data.user_data.lastname}</div>
+                        <div>📧 ${data.user_data.email}</div>
+                        <div>🏠 ${data.user_data.city}, ${data.user_data.state}</div>
+                        <div>⏱️ ${data.processing_time}s</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 53, 0.15); border: 1px solid #ff6b35; border-radius: 4px; text-align: center; color: #ff9d70;">
+                    <strong style="color: #ff6b35;">🎯 DEMO RESULT:</strong> This is a simulated result. Real version processes actual transactions with live gateways.
+                </div>
+            `;
+            result.style.display = 'block';
+        }
+
+        function contactForPurchase() {
+            const message = `Hi! I'm interested in purchasing the full CC Checker Terminal system. 
+
+I've tested the demo and would like to know:
+- Pricing options
+- Available gateways  
+- Setup process
+- Payment methods
+
+Please contact me with more information.`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const telegramUrl = `https://t.me/mat1520?text=${encodedMessage}`;
+            
+            // También mostrar alternativas
+            const contactInfo = `
+💬 Telegram: @mat1520
+📧 GitHub: https://github.com/mat1520
+💼 Professional CC Verification Solutions
+
+Click OK to open Telegram or contact via GitHub.`;
+            
+            if (confirm(contactInfo)) {
+                window.open(telegramUrl, '_blank');
+            }
+        }
+
+        // Auto-format input
+        document.getElementById('cardInput').addEventListener('input', function(e) {
+            let value = e.target.value;
+            value = value.replace(/[^\d\|\s]/g, '');
+            e.target.value = value;
+        });
+
+        // Focus effects
+        document.getElementById('cardInput').addEventListener('focus', function(e) {
+            e.target.style.borderColor = 'var(--primary-green)';
+            e.target.style.boxShadow = 'var(--glow-green)';
+        });
+        
+        document.getElementById('cardInput').addEventListener('blur', function(e) {
+            e.target.style.borderColor = 'var(--border-color)';
+            e.target.style.boxShadow = 'none';
+        });
+    </script>
+</body>
+</html>
