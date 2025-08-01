@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-green: #00ff41;
-            --secondary-cyan: #00ffff;
+            --primary-green: #22c55e;
+            --secondary-cyan: #06b6d4;
             --dark-bg: #0a0a0a;
             --terminal-bg: #0d1117;
             --border-color: #30363d;
             --text-primary: #c9d1d9;
             --text-secondary: #8b949e;
-            --glow-green: 0 0 10px #00ff41;
-            --glow-cyan: 0 0 10px #00ffff;
+            --glow-green: 0 0 10px rgba(34, 197, 94, 0.4);
+            --glow-cyan: 0 0 10px rgba(6, 182, 212, 0.4);
         }
 
         * {
@@ -44,11 +44,11 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(90deg, transparent 98%, var(--primary-green) 100%),
-                linear-gradient(180deg, transparent 98%, var(--secondary-cyan) 100%);
+                linear-gradient(90deg, transparent 98%, rgba(34, 197, 94, 0.3) 100%),
+                linear-gradient(180deg, transparent 98%, rgba(6, 182, 212, 0.3) 100%);
             background-size: 50px 50px, 50px 50px;
             animation: grid-move 20s linear infinite;
-            opacity: 0.1;
+            opacity: 0.05;
             pointer-events: none;
             z-index: -1;
         }
@@ -377,7 +377,7 @@
         }
 
         .contact-btn:hover {
-            box-shadow: var(--glow-cyan);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
             transform: translateY(-2px);
         }
 
@@ -652,8 +652,8 @@
                 <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                     <div style="font-size: 2rem; margin-right: 10px;">${statusIcon}</div>
                     <div>
-                        <h3 style="margin: 0; font-size: 1.5rem; color: ${data.result.status === 'Approved' ? '#000000' : 'white'}; font-weight: 700; text-shadow: none;">${data.result.status.toUpperCase()}</h3>
-                        <p style="margin: 5px 0 0 0; opacity: 1; font-size: 0.9rem; color: ${data.result.status === 'Approved' ? '#1a1a1a' : 'white'}; font-weight: 500;">${data.result.message}</p>
+                        <h3 style="margin: 0; font-size: 1.5rem; color: ${data.result.status === 'Approved' ? '#ffffff' : 'white'}; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">${data.result.status.toUpperCase()}</h3>
+                        <p style="margin: 5px 0 0 0; opacity: 0.95; font-size: 0.9rem; color: ${data.result.status === 'Approved' ? '#f0f9ff' : 'white'}; font-weight: 500;">${data.result.message}</p>
                     </div>
                 </div>
                 
