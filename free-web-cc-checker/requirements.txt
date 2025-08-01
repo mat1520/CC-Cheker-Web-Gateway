@@ -1,0 +1,69 @@
+# Requirements File - Demo Version
+# This file lists all dependencies for the full CC Checker system
+
+# Core Framework
+flask==2.3.3
+flask-cors==4.0.0
+flask-sqlalchemy==3.0.5
+flask-migrate==4.0.5
+flask-jwt-extended==4.5.3
+
+# Database
+sqlalchemy==2.0.20
+psycopg2-binary==2.9.7  # PostgreSQL adapter
+redis==4.6.0  # For caching and rate limiting
+
+# Gateway Integrations
+stripe==6.5.0  # Stripe payments
+paypalrestsdk==1.13.3  # PayPal integration
+squareup==29.0.0.20230816  # Square payments
+braintree==4.25.0  # Braintree payments
+
+# Telegram Bot
+python-telegram-bot==20.5
+aiohttp==3.8.5
+
+# Security & Encryption
+cryptography==41.0.4
+bcrypt==4.0.1
+pyotp==2.9.0  # Two-factor authentication
+
+# Data Processing
+pandas==2.1.0  # For bulk processing
+numpy==1.24.3
+openpyxl==3.1.2  # Excel file support
+
+# API & HTTP
+requests==2.31.0
+httpx==0.24.1
+aiofiles==23.2.1
+
+# Validation & Utilities
+pydantic==2.3.0
+python-dateutil==2.8.2
+phonenumbers==8.13.19
+
+# Monitoring & Logging
+prometheus-client==0.17.1
+structlog==23.1.0
+sentry-sdk==1.32.0
+
+# Testing (Development)
+pytest==7.4.2
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+factory-boy==3.3.0
+requests-mock==1.11.0
+
+# Development Tools
+black==23.7.0  # Code formatting
+flake8==6.1.0  # Linting
+mypy==1.5.1   # Type checking
+
+# Production Server
+gunicorn==21.2.0
+uvicorn==0.23.2
+
+# Note: This is a demo requirements file
+# Full version includes additional enterprise dependencies
+# Contact @mat1520 for complete dependency list

@@ -1,13 +1,17 @@
 {
-  "name": "free-cc-checker-demo",
-  "version": "1.0.0",
-  "description": "Free demo version of professional CC verification terminal by mat1520",
+  "name": "cc-checker-terminal-demo",
+  "version": "2.0.0-demo",
+  "description": "Advanced Credit Card Verification Terminal - Demo Version with Full Structure",
   "main": "index.html",
   "scripts": {
-    "start": "python -m http.server 8000",
-    "dev": "python -m http.server 3000",
-    "build": "echo 'Demo version - no build required'",
-    "deploy": "echo 'Deploy to your hosting platform'"
+    "start": "python api/index.py",
+    "dev": "python -m flask --app api/index.py run --debug",
+    "test": "python -m pytest tests/",
+    "lint": "flake8 api/ utils/ models/",
+    "format": "black api/ utils/ models/",
+    "demo": "python -m http.server 8000",
+    "build": "echo 'Demo version - Contact @mat1520 for full build system'",
+    "deploy": "echo 'Deploy demo to your hosting platform'"
   },
   "keywords": [
     "credit-card",
