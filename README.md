@@ -35,13 +35,25 @@
 ![Version](https://img.shields.io/badge/Version-v2.1.0-00ff41?style=for-the-badge&logo=semantic-release)
 ![License](https://img.shields.io/badge/License-💎%20Premium-blueviolet?style=for-the-badge&logo=github)
 ![Made with](https://img.shields.io/badge/Made%20with-❤️%20%26%20Coffee-red?style=for-the-badge)
+![Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)
 
 **🚀 Next-Generation Credit Card Verification System**  
 *Professional-grade terminal interface for real-time card validation*
 
+<div align="center">
+
+### 🌐 **Live Demo Status**
+[![Vercel Deployment](https://img.shields.io/badge/🚀%20Live%20Demo-Online-brightgreen?style=for-the-badge)](https://cc-cheker-web-gateway.vercel.app/)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-July%202025-blue?style=for-the-badge)](#)
+[![Uptime](https://img.shields.io/badge/Uptime-99.9%25-success?style=for-the-badge)](#)
+
+**🔗 [cc-cheker-web-gateway.vercel.app](https://cc-cheker-web-gateway.vercel.app/)**
+
+</div>
+
 <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="50">
 
-### 🎯 [**TRY LIVE DEMO**](https://mat1520.github.io/CC-Cheker-Web-Gateway/) • 💰 [**GET FULL VERSION**](#-pricing--packages) • 🤝 [**CONTACT**](#-contact--support)
+### 🎯 [**TRY LIVE DEMO**](https://cc-cheker-web-gateway.vercel.app/) • 💰 [**GET FULL VERSION**](#-pricing--packages) • 🤝 [**CONTACT**](#-contact--support)
 
 ---
 
@@ -106,7 +118,7 @@
 
 ### 🖥️ **Option 1: Live Demo** (Fastest)
 ```bash
-🔗 https://mat1520.github.io/CC-Cheker-Web-Gateway/
+🔗 https://cc-cheker-web-gateway.vercel.app/
 # Click and start testing immediately!
 ```
 
@@ -561,7 +573,7 @@ Same day available
 <img src="https://img.shields.io/badge/💬%20Start%20Free%20Consultation-Telegram-blue?style=for-the-badge&logo=telegram">
 </a>
 <br><br>
-<a href="https://mat1520.github.io/CC-Cheker-Web-Gateway/">
+<a href="https://cc-cheker-web-gateway.vercel.app/">
 <img src="https://img.shields.io/badge/🎯%20Try%20Live%20Demo-Now-green?style=for-the-badge&logo=firefox">
 </a>
 
